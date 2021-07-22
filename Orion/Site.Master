@@ -1,0 +1,191 @@
+﻿<%@ Master Language="VB" AutoEventWireup="false"  CodeBehind="~/Site.master.vb" Inherits="Orion.SiteMaster" %>
+
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="es">
+<head runat="server">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title></title>
+    <link href="~/Styles/Site.css" rel="stylesheet" type="text/css" />
+    <asp:ContentPlaceHolder ID="HeadContent" runat="server">
+    </asp:ContentPlaceHolder>
+    <style type="text/css">
+        #sub
+        {
+            width: 840px;
+        }
+        #footer_bg
+        {
+            width: 1530px;
+        }
+        .style5
+        {
+            width: 92%;
+            font-size: xx-small;
+            color: White;
+        }
+        .auto-style1 {
+            text-align: center;
+        }
+        .auto-style2 {
+            width: 100%;
+        }
+        .auto-style3 {
+            height: 16px;
+        }
+        </style>
+</head>
+
+        <!-- 
+
+  
+  
+   
+   <!--     //-->
+
+    <script type="text/javascript">
+
+        var clicked = false;
+        function CheckBrowser() {
+            if (clicked == false) {
+                //Browser closed   
+            } else {
+                //redirected
+                clicked = false;
+            }
+        }
+        function bodyUnload() {
+            if (clicked == false)//browser is closed  
+            {
+                var request = GetRequest();
+                request.open("GET", "../LogOut.aspx", true);
+                request.send();
+            }
+        }
+
+        function GetRequest() {
+            var xmlHttp = null;
+            try {
+                // Firefox, Opera 8.0+, Safari
+                xmlHttp = new XMLHttpRequest();
+            }
+            catch (e) {
+                //Internet Explorer
+                try {
+                    xmlHttp = new ActiveXObject("Msxml2.XMLHTTP");
+                }
+                catch (e) {
+                    xmlHttp = new ActiveXObject("Microsoft.XMLHTTP");
+                }
+            }
+            return xmlHttp;
+        } 
+ 
+</script>
+
+<body onunload="bodyUnload();" onclick="clicked=true;">
+
+    <form runat="server" enctype="Multipart/Form-Data" id="form1">
+    <div class="page">
+
+        <div class="header">
+            <div class="title">
+                <h1 dir="ltr">
+                    <asp:Image ID="Image1" runat="server" Height="99px" ImageAlign="Middle" 
+                        ImageUrl="~/Images/LogoOrion.png" style="margin-top: 0px" 
+                        Width="167px" />
+                        
+                    &nbsp;&nbsp;
+                        
+                    </h1>
+            </div>
+
+            <asp:Image ID="Image3" runat="server" ImageUrl="~/Images/red2whiteline.jpg" Width="100%" Height="3px" />
+
+            <div class="hideSkiplink">
+                <asp:Menu ID="NavigationMenu" runat="server" 
+                    EnableViewState="False" Orientation="Horizontal" DynamicHorizontalOffset="2" 
+                    Font-Names="Arial" Font-Size="Large" RenderingMode="Table" 
+                    StaticSubMenuIndent="10px" BorderStyle="None" 
+                    BorderWidth="3px"  CssClass="Menu" 
+                    EnableTheming="True" Font-Bold="True" IncludeStyleBlock="False" 
+                    ForeColor="White" BackColor="#00529C">
+                   <DataBindings>
+                        <asp:MenuItemBinding DataMember="Home" Depth="0" NavigateUrlField="url" 
+                            TextField="text" ValueField="id" />
+                    </DataBindings>
+                    <DynamicHoverStyle BackColor="#00529C" ForeColor="White" BorderColor="Black" 
+                        BorderStyle="Ridge" BorderWidth="3px" />
+                    <DynamicMenuItemStyle HorizontalPadding="5px" 
+                        ForeColor="White" BackColor="#00529C" BorderColor="Black" 
+                        BorderStyle="Solid" BorderWidth="2px" />
+                    <DynamicMenuStyle BackColor="#00529C" ForeColor="White" />
+                    <DynamicSelectedStyle BackColor="#00529C" BorderColor="#666666" 
+                        BorderStyle="Inset" BorderWidth="3px" ForeColor="White" />
+                    <StaticHoverStyle BackColor="#00529C" ForeColor="White" />
+                    <StaticMenuItemStyle HorizontalPadding="5px" VerticalPadding="2px" 
+                        BackColor="#00529C" BorderColor="#00529C" BorderStyle="Solid" BorderWidth="2px" 
+                        Font-Names="Arial" Font-Size="Large" ItemSpacing="5px" 
+                        ForeColor="White" />
+                    <StaticMenuStyle HorizontalPadding="5px" />
+                    <StaticSelectedStyle BackColor="#00529C" ForeColor="White" />
+                    <StaticItemTemplate>
+                        <%# Eval("Text") %>
+                    </StaticItemTemplate>
+                </asp:Menu>
+            </div>
+            <asp:Image ID="Image2" runat="server" ImageUrl="~/Images/red2whiteline.jpg" Width="100%" Height="3px" />
+            
+        </div>
+        <div class="main">
+            <br />
+            
+            <asp:ContentPlaceHolder ID="MainContent" runat="server" >
+
+            </asp:ContentPlaceHolder>
+
+            <asp:Image ID="Image4" runat="server" ImageUrl="~/Images/red2whiteline.jpg" 
+                Width="100%" Height="4px" />
+
+            <br />
+        </div>
+    </div>
+    <div class="footer">
+            <div id="tr_footer">
+                <!-- Inicio del footer -->
+                <div id="footer_bg" class="auto-style1">
+                    <br />
+                    <table  class="style5">
+                        <tr>
+                            <td align="left" colspan="2">
+                                <table class="auto-style2">
+                                    <tr>
+                                        <td>
+                    <asp:Label ID="Lbl_UserInfo" runat="server" 
+                        style="font-weight: 700; font-size: small; color: #000000" Font-Names="Arial"></asp:Label>
+                                        </td>
+                                        <td align="right">
+                    <asp:Label ID="Lbl_UserInfo1" runat="server" 
+                        style="font-weight: 700; font-size: small; color: #000000" Font-Names="Arial"></asp:Label>
+                                        </td>
+                                    </tr>
+                                    </table>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td align="left" width="50%"  valign="middle" class="auto-style3">
+                                </td>
+                            <td align="right"  valign="middle" class="auto-style3">
+                                </td>
+                        </tr>
+                    </table>
+                    <asp:Label ID="Lbl_AppInfo" runat="server" 
+                        style="font-weight: 700; font-size: small; color: #000000" 
+                        Font-Names="Arial"></asp:Label>
+                    <br />
+                </div>
+            </div>
+
+    </div>
+    </form>
+</body>
+</html>
